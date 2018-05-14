@@ -1,4 +1,6 @@
 # Mango
+E-commerce Application built following [Mastering Phoenix Framework](https://shankardevy.com/phoenix-book) book written by @shankardevy
+
 
 To start your Phoenix server:
 
