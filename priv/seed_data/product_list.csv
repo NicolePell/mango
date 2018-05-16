@@ -1,0 +1,42 @@
+id,name,price,sku,is_seasonal,image,quantity,category
+1,Green Chilli,0.15,1,false,/product_images/green-chilli.jpeg,100 gms,vegetables
+2,Ash Gourd,0.55,2,false,/product_images/ashgourd.jpeg,1 kg,vegetables
+3,Beans,0.37,3,false,/product_images/beans.jpeg,1 kg,vegetables
+4,Beetroot,0.90,4,false,/product_images/Beetroot.jpeg,1 kg,vegetables
+5,Cabbage,0.60,5,false,/product_images/cabbage.jpeg,1 kg,vegetables
+6,Carrot,0.65,6,true,/product_images/carrot.jpeg,1 kg,vegetables
+7,Cauliflower,0.38,7,false,/product_images/Cauliflower.jpeg,1 kg,vegetables
+8,Chilli,0.10,8,false,/product_images/Chilli.jpeg,100 gms,vegetables
+9,Corn,0.30,9,true,/product_images/Corn.jpeg,1 Piece,vegetables
+10,Cucumber,0.55,10,false,/product_images/Cucumber.jpeg,1 kg,vegetables
+11,Drumstick,0.10,11,false,/product_images/Drumstick.jpeg,1 Piece,vegetables
+12,Garlic,0.55,12,false,/product_images/Garlic.jpeg,100 gms,vegetables
+13,Ginger,0.30,13,false,/product_images/Ginger.jpeg,100 gms,vegetables
+14,Jackfruit,0.95,14,true,/product_images/Jackfruit.jpeg,1 Piece,vegetables
+15,Ladies finger,0.30,15,false,/product_images/Ladiesfinger.jpeg,1 kg,vegetables
+16,Onion,0.120,16,false,/product_images/onion.jpeg,1 kg,vegetables
+17,Potato,0.80,17,false,/product_images/potato.jpeg,1 kg,vegetables
+18,Radish,0.55,18,false,/product_images/radish.jpeg,1 kg,vegetables
+19,Tamarind,0.43,19,false,/product_images/Tamarind.jpeg,1 kg,vegetables
+20,Tomato,0.23,20,false,/product_images/tomato.jpeg,1 kg,vegetables
+21,Apple,0.150,21,false,/product_images/apple.jpeg,1 kg,fruits
+22,Apricot,0.55,22,false,/product_images/Apricot.jpeg,1 kg,fruits
+23,Banana,0.20,23,false,/product_images/Banana.jpeg,2 Pieces,fruits
+24,Blueberry,0.55,24,false,/product_images/Blueberry.jpeg,1 kg,fruits
+25,Coconut,0.20,25,false,/product_images/Coconut.jpeg,1 Piece,fruits
+26,Custard Apple,0.90,26,false,/product_images/CustardApple.jpeg,1 kg,fruits
+27,Dates,0.50,27,false,/product_images/Dates.jpeg,100 gms,fruits
+28,Fig,0.30,28,false,/product_images/Fig.jpeg,1 kg,fruits
+29,Gooseberry,0.40,29,false,/product_images/Gooseberry.jpeg,1 kg,fruits
+30,Guava,0.50,30,true,/product_images/Guava.jpeg,1 kg,fruits
+31,Lemon,0.15,31,false,/product_images/Lemon.jpeg,1 Piece,fruits
+32,Lychee,0.40,32,false,/product_images/Lychee.jpeg,1 kg,fruits
+33,Mango,1.20,33,true,/product_images/Mango.jpeg,1 kg,fruits
+34,Orange,1.40,34,false,/product_images/orange.jpeg,1 kg,fruits
+35,Papaya,0.30,35,true,/product_images/Papaya.jpeg,1 Piece,fruits
+36,Pear,0.30,36,false,/product_images/Pear.jpeg,1 kg,fruits
+38,Pomogranate,1.40,38,false,/product_images/Pomogranate.jpeg,1 kg,fruits
+39,Sapota,0.60,39,true,/product_images/Sapota.jpeg,1 kg,fruits
+40,Star fruit,0.50,40,false,/product_images/Starfruit.jpeg,1 Piece,fruits
+41,Sweetlime,1.40,41,false,/product_images/Sweetlime.jpeg,1 kg,fruits
+42,Watermelon,0.50,42,true,/product_images/Watermelon.jpeg,1 Piece,fruits
