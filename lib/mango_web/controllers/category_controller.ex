@@ -7,7 +7,7 @@ defmodule MangoWeb.CategoryController do
 
     conn
     |> assign(:products, products)
-    |> assign(:name, String.capitalize name)
+    |> assign(:name, name)
     |> render("show.html")
   end
 
