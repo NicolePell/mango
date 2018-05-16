@@ -28,7 +28,7 @@ defmodule MangoWeb.HomepageTest do
     |> visible_text
 
     assert product_name == "Apple"
-    assert product_price == "0.25"
+    assert product_price == "£ 0.25"
 
     refute page_source() =~ "Tomato"
   end

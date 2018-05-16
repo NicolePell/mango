@@ -29,7 +29,7 @@ defmodule MangoWeb.CategoryPageTest do
     |> visible_text()
 
     assert product_name == "Apple"
-    assert product_price == "0.25"
+    assert product_price == "£ 0.25"
 
     refute page_source() =~ "Tomato"
   end
@@ -49,7 +49,7 @@ defmodule MangoWeb.CategoryPageTest do
     |> visible_text()
 
     assert product_name == "Tomato"
-    assert product_price == "0.65"
+    assert product_price == "£ 0.65"
 
     refute page_source() =~ "Apple"
   end
