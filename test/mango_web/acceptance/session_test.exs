@@ -23,7 +23,6 @@ defmodule MangoWeb.SessionTest do
   end
 
   test "successful login for valid credentials" do
-    ### WHEN ###
     navigate_to("/login")
 
     form = find_element(:id, "session-form")
@@ -36,7 +35,6 @@ defmodule MangoWeb.SessionTest do
     find_within_element(form, :tag, "button")
     |> click
 
-    ### THEN ###
     assert current_path() == "/"
     message = find_element(:class, "alert-info")
               |> visible_text
@@ -45,7 +43,6 @@ defmodule MangoWeb.SessionTest do
   end
 
   test "shows error message for invalid credentials" do
-    ### WHEN ###
     navigate_to("/login")
 
     form = find_element(:id, "session-form")
@@ -53,7 +50,6 @@ defmodule MangoWeb.SessionTest do
     find_within_element(form, :tag, "button")
     |> click
 
-    ### THEN ###
     assert current_path() == "/login"
     message = find_element(:class, "alert-danger")
               |> visible_text

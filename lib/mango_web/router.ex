@@ -14,18 +14,16 @@ defmodule MangoWeb.Router do
   end
 
   scope "/", MangoWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
 
+    get "/categories/:name", CategoryController, :show
+
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
-
-    get "/categories/:name", CategoryController, :show
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", MangoWeb do
-  #   pipe_through :api
-  # end
 end
