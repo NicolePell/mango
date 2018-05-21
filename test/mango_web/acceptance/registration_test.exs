@@ -17,8 +17,8 @@ defmodule MangoWeb.Acceptance.RegistrationTest do
     find_within_element(form, :name, "registration[phone]")
     |> fill_field("424242")
 
-    find_within_element(form, :name, "registration[residence_area]")
-    |> fill_field("earth")
+    find_element(:css, "#registration_residence_area option[value='Earth']")
+    |> click
 
     find_within_element(form, :name, "registration[password]")
     |> fill_field("theansweris42")
