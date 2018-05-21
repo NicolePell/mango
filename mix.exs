@@ -33,6 +33,8 @@ defmodule Mango.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 1.0"},
+      {:comeonin, "~> 4.1"},
       {:cowboy, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:nimble_csv, "~> 0.4.0"},

@@ -1,6 +1,6 @@
 defmodule Mango.Catalog do
-  alias Mango.Catalog.Product
   alias Mango.Repo
+  alias Mango.Catalog.Product
 
   def list_products do
     Product

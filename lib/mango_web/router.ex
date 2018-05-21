@@ -17,6 +17,10 @@ defmodule MangoWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    get "/register", RegistrationController, :new
+    post "/register", RegistrationController, :create
+
     get "/categories/:name", CategoryController, :show
   end
 
