@@ -7,8 +7,6 @@ defmodule MangoWeb.SessionTest do
   hound_session()
 
   setup do
-    ### GIVEN ###
-    # There is a valid registered user
     valid_attrs = %{
       "name" => "Arthur",
       "email" => "arthurd@earth.com",
