@@ -14,11 +14,8 @@
     
     <hr />
 
-    <%= form_for @conn, "/cart", [as: :cart], fn f -> %>
-      <%= hidden_input f, :product_id, value: @product.id %>
-      <%= hidden_input f, :quantity, value: 1 %>
-      <%= submit "Add to cart" %>
-    <% end %>
+    <%= render "cart_form.html", conn: @conn, product: @product %>
+
   </div>
   <img src="<%= @product.image %>" />
 </div>
