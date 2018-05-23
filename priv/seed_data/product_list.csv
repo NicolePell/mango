@@ -19,7 +19,7 @@ id,name,price,sku,is_seasonal,image,quantity,category
 18,Radish,0.55,18,false,/product_images/radish.jpeg,1 kg,vegetables
 19,Tamarind,0.43,19,false,/product_images/Tamarind.jpeg,1 kg,vegetables
 20,Tomato,0.23,20,false,/product_images/tomato.jpeg,1 kg,vegetables
-21,Apple,0.150,21,false,/product_images/apple.jpeg,1 kg,fruits
+21,Apple,0.15,21,false,/product_images/apple.jpeg,1 kg,fruits
 22,Apricot,0.55,22,false,/product_images/Apricot.jpeg,1 kg,fruits
 23,Banana,0.20,23,false,/product_images/Banana.jpeg,2 Pieces,fruits
 24,Blueberry,0.55,24,false,/product_images/Blueberry.jpeg,1 kg,fruits
