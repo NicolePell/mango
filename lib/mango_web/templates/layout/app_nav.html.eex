@@ -14,7 +14,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <%= link raw("<i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"></i> <span class=\"cart-count\">#{cart_count(@conn)}</span>"), 
+          <%= link cart_link_text(@conn), 
               to: cart_path(@conn, :show), 
               class: "cart nav-link" %>
         </li>
