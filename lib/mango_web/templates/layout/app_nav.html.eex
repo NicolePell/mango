@@ -13,7 +13,11 @@
     <div class="collapse navbar-collapse" id="primary-nav">
 
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link "Cart (#{cart_count(@conn)})", to: cart_path(@conn, :show), class: "cart nav-link" %></li>
+        <li>
+          <%= link raw("<i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"></i> <span class=\"cart-count\">#{cart_count(@conn)}</span>"), 
+              to: cart_path(@conn, :show), 
+              class: "cart nav-link" %>
+        </li>
         <%= if @customer do %>    
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
