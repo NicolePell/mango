@@ -21,7 +21,7 @@ defmodule MangoWeb.CartTest do
 
     assert Enum.count(products) != 0
     products
-    |> Enum.each(fn(product) -> 
+    |> Enum.each(fn(product) ->
       button = find_within_element(product, :tag, "button")
       assert visible_text(button) == "Add to cart"
     end)
@@ -37,16 +37,16 @@ defmodule MangoWeb.CartTest do
 
     pack_size = find_within_element(product, :name, "cart[pack_size]")
                   |> attribute_value("value")
-    
+
     find_within_element(product, :name, "cart[quantity]")
     |> fill_field(2)
 
     find_within_element(product, :tag, "button")
     |> click
 
-    message = find_element(:css, ".alert")
+    message = find_element(:css, ".alert-success")
               |> visible_text
-    assert message == "Product added to cart - #{product_name}(#{pack_size}) x 2 qty"
+    assert message =~ "Product added to cart - #{product_name}(#{pack_size}) x 2 qty"
   end
 
 end
