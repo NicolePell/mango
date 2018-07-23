@@ -7,16 +7,19 @@ defmodule MangoWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug MangoWeb.Plugs.LoadCustomer
-    plug MangoWeb.Plugs.FetchCart
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+  pipeline :frontend do
+    plug MangoWeb.Plugs.FetchCart
+    plug MangoWeb.Plugs.LoadCustomer
+  end
+
   scope "/", MangoWeb do
-    pipe_through :browser
+    pipe_through [:browser, :frontend]
 
     get "/", PageController, :index
 
@@ -25,13 +28,21 @@ defmodule MangoWeb.Router do
     get "/login", SessionController, :new
     post "/login", SessionController, :create
 
-    get "/logout", SessionController, :delete
-
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
 
     get "/cart", CartController, :show
     post "/cart", CartController, :add
     put "/cart", CartController, :update
+
   end
+
+  scope "/", MangoWeb do
+    pipe_through [:browser, :frontend, MangoWeb.Plugs.AuthenticateCustomer]
+
+    get "/checkout", CheckoutController, :edit
+
+    get "/logout", SessionController, :delete
+  end
+
 end
