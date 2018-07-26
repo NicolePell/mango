@@ -21,6 +21,16 @@ defmodule MangoWeb.OrderHistoryTest do
 
     {:ok, ford} = CRM.create_customer(valid_attrs)
 
+    other_attrs = %{
+      "name" => "Arthur",
+      "email" => "arthur@milliways.com",
+      "password" => "theansweris42",
+      "residence_area" => "Earth",
+      "phone" => "1010101"
+    }
+
+    {:ok, arthur} = CRM.create_customer(other_attrs)
+
     Repo.insert %Order{
       status: "Confirmed",
       total: 25.00,
@@ -29,6 +39,16 @@ defmodule MangoWeb.OrderHistoryTest do
       customer_name: ford.name,
       email: ford.email,
       residence_area: ford.residence_area
+    }
+
+    Repo.insert %Order{
+      status: "Delivered",
+      total: 60.60,
+      comments: "Pantry",
+      customer_id: arthur.id,
+      customer_name: arthur.name,
+      email: arthur.email,
+      residence_area: arthur.residence_area
     }
 
     login_as(ford.email, ford.password)
@@ -60,6 +80,8 @@ defmodule MangoWeb.OrderHistoryTest do
 
     assert order_status =~ "Confirmed"
     assert order_total =~ "£ 25.0"
+
+    refute page_source() =~ "Delivered"
   end
 
   test "view order details using the 'View' link from the 'My Orders' page" do
