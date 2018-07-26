@@ -1,2 +1,22 @@
-<h1>Order</h1>
+<h1 class="page-title"><%= @customer.name %>'s Orders</h1>
 
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Order Status</th>
+            <th>Order Total</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%= for order <- @orders do %>
+            <tr class="order">
+                <td><%= order.id %></td>
+                <td class="order-status"><%= order.status %></td>
+                <td class="order-total">£ <%= order.total %></td>
+                <td><%= link "View Order Details", to: order_path(@conn, :show, order.id) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

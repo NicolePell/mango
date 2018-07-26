@@ -23,7 +23,7 @@ defmodule MangoWeb.OrderHistoryTest do
 
     Repo.insert %Order{
       status: "Confirmed",
-      total: 2.50,
+      total: 25.00,
       comments: "Stock up",
       customer_id: ford.id,
       customer_name: ford.name,
@@ -44,10 +44,25 @@ defmodule MangoWeb.OrderHistoryTest do
     |> click
 
     assert current_path() == "/orders"
+
+    page_title = find_element(:class, "page-title")
+                 |> visible_text()
+
+    assert page_title == "Ford's Orders"
+
+    [order | _rest] = find_all_elements(:class, "order")
+
+    order_status = find_within_element(order, :class, "order-status")
+    |> visible_text()
+
+    order_total = find_within_element(order, :class, "order-total")
+    |> visible_text()
+
+    assert order_status =~ "Confirmed"
+    assert order_total =~ "£ 25.0"
   end
 
   test "view order details using the 'View' link from the 'My Orders' page" do
-
   end
 
   test "user sees a 404 page when attempting to view an order that does not belong to the user" do
