@@ -19,45 +19,24 @@ defmodule MangoWeb.OrderHistoryTest do
       "phone" => "424242"
     }
 
-    {:ok, customer} = CRM.create_customer(valid_attrs)
+    {:ok, ford} = CRM.create_customer(valid_attrs)
 
     Repo.insert %Order{
       status: "Confirmed",
       total: 2.50,
       comments: "Stock up",
-      customer_id: customer.id,
-      customer_name: customer.name,
-      email: customer.email,
-      residence_area: customer.residence_area
+      customer_id: ford.id,
+      customer_name: ford.name,
+      email: ford.email,
+      residence_area: ford.residence_area
     }
 
-    ##############################################################
+    login_as(ford.email, ford.password)
 
     :ok
   end
 
   test "navigate to a list of 'My Orders' from the user menu" do
-    ##############################################################
-    # TODO: Extract login_as(user) into a test helper
-    navigate_to("/login")
-
-    form = find_element(:id, "session-form")
-    find_within_element(form, :name, "session[email]")
-    |> fill_field("fordp@betelgeuse.com")
-
-    find_within_element(form, :name, "session[password]")
-    |> fill_field("theansweris42")
-
-    find_within_element(form, :tag, "button")
-    |> click
-
-    assert current_path() == "/"
-    message = find_element(:class, "alert-info")
-              |> visible_text
-
-    assert message == "Login successful"
-    ##############################################################
-
     find_element(:id, "user-menu")
     |> click
 
@@ -68,9 +47,30 @@ defmodule MangoWeb.OrderHistoryTest do
   end
 
   test "view order details using the 'View' link from the 'My Orders' page" do
+
   end
 
   test "user sees a 404 page when attempting to view an order that does not belong to the user" do
+  end
+
+  defp login_as(email, password) do
+    navigate_to("/login")
+
+    form = find_element(:id, "session-form")
+    find_within_element(form, :name, "session[email]")
+    |> fill_field(email)
+
+    find_within_element(form, :name, "session[password]")
+    |> fill_field(password)
+
+    find_within_element(form, :tag, "button")
+    |> click
+
+    assert current_path() == "/"
+    message = find_element(:class, "alert-info")
+              |> visible_text
+
+    assert message == "Login successful"
   end
 
 end
