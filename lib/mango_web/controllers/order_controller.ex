@@ -11,7 +11,9 @@ defmodule MangoWeb.OrderController do
   end
 
   def show(conn, %{"id" => id}) do
-    render conn, "show.html"
+    order = Sales.get_order(id)
+
+    render conn, "show.html", order: order
   end
 
 end

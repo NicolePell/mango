@@ -1,4 +1,5 @@
 defmodule Mango.Sales do
+
   alias Mango.Repo
   alias Mango.Sales.Order
 

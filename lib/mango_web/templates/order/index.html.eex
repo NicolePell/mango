@@ -15,7 +15,7 @@
                 <td><%= order.id %></td>
                 <td class="order-status"><%= order.status %></td>
                 <td class="order-total">£ <%= order.total %></td>
-                <td><%= link "View Order Details", to: order_path(@conn, :show, order.id) %></td>
+                <td class="order-details-link"><%= link "View Order Details", to: order_path(@conn, :show, order.id) %></td>
             </tr>
         <% end %>
     </tbody>

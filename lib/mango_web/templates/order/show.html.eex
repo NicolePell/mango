@@ -1,0 +1,16 @@
+<h1 class="order-id">Show me my order <%= @order.id %>!</h1>
+
+<ul>
+    <li class="order-status">Status: <%= @order.status %></li>
+    <li class="order-total">Total: £ <%= @order.total %></li>
+    <li class="order-comments">Comments: <%= @order.comments %></li>
+        <%= for line_item <- @order.line_items do %>
+        <ul class="order-line-items">
+            <li class="product-name"><%= line_item.product_name %></li>
+            <li class="pack-size"><%= line_item.pack_size %></li>
+            <li class="quantity"><%= line_item.quantity %></li>
+            <li class="unit-price">£ <%= line_item.unit_price %></li>
+            <li class="total">£ <%= line_item.total %></li>
+        </ul>
+        <% end %>
+</ul>

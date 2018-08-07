@@ -5,12 +5,11 @@ defmodule MangoWeb.OrderHistoryTest do
   hound_session()
 
   setup do
+    alias Mango.Catalog.Product
+    alias Mango.CRM
     alias Mango.Repo
     alias Mango.Sales.Order
-    alias Mango.CRM
 
-    ##############################################################
-    # TODO: Use ex_machina to generate test data
     valid_attrs = %{
       "name" => "Ford",
       "email" => "fordp@betelgeuse.com",
@@ -21,35 +20,34 @@ defmodule MangoWeb.OrderHistoryTest do
 
     {:ok, ford} = CRM.create_customer(valid_attrs)
 
-    other_attrs = %{
-      "name" => "Arthur",
-      "email" => "arthur@milliways.com",
-      "password" => "theansweris42",
-      "residence_area" => "Earth",
-      "phone" => "1010101"
-    }
+    product = %Product{
+                name: "Tomato",
+                pack_size: "1 kg",
+                price: 55,
+                sku: "A123",
+                is_seasonal: false,
+                category: "vegetables"
+              }
+              |> Repo.insert!
 
-    {:ok, arthur} = CRM.create_customer(other_attrs)
-
-    Repo.insert %Order{
+    %Order{
       status: "Confirmed",
       total: 25.00,
       comments: "Stock up",
       customer_id: ford.id,
       customer_name: ford.name,
       email: ford.email,
-      residence_area: ford.residence_area
+      residence_area: ford.residence_area,
+      line_items: [%{
+        product_id: product.id,
+        product_name: product.name,
+        pack_size: product.pack_size,
+        unit_price: product.price,
+        total: Decimal.mult(product.price, 2),
+        quantity: 2
+      }]
     }
-
-    Repo.insert %Order{
-      status: "Delivered",
-      total: 60.60,
-      comments: "Pantry",
-      customer_id: arthur.id,
-      customer_name: arthur.name,
-      email: arthur.email,
-      residence_area: arthur.residence_area
-    }
+    |> Repo.insert!
 
     login_as(ford.email, ford.password)
 
@@ -85,6 +83,36 @@ defmodule MangoWeb.OrderHistoryTest do
   end
 
   test "view order details using the 'View' link from the 'My Orders' page" do
+    navigate_to("/orders")
+
+    [order | _rest] = find_all_elements(:class, "order")
+
+    find_within_element(order, :class, "order-details-link")
+    |> click
+
+
+    [line_item | _rest] = find_all_elements(:class, "order-line-items")
+
+    product_name = find_within_element(line_item, :class, "product-name")
+    |> visible_text()
+
+    pack_size = find_within_element(line_item, :class, "pack-size")
+    |> visible_text()
+
+    quantity = find_within_element(line_item, :class, "quantity")
+    |> visible_text()
+
+    unit_price = find_within_element(line_item, :class, "unit-price")
+    |> visible_text()
+
+    total = find_within_element(line_item, :class, "total")
+    |> visible_text()
+
+    assert product_name == "Tomato"
+    assert pack_size == "1 kg"
+    assert quantity == "2"
+    assert unit_price == "£ 55"
+    assert total == "£ 110"
   end
 
   test "user sees a 404 page when attempting to view an order that does not belong to the user" do
