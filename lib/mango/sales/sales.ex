@@ -53,4 +53,9 @@ defmodule Mango.Sales do
     |> Enum.filter(fn(order) -> order.customer_id == customer.id end)
   end
 
+  def get_order(id) do
+    Order
+    |> Repo.get_by(id: id)
+  end
+
 end

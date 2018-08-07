@@ -93,4 +93,31 @@ defmodule Mango.SalesTest do
     refute customer_order.status == arthur_order.status
   end
 
+  test "get_order/1" do
+    customer = %{
+      name: "Arthur",
+      email: "arthur@magrathea.com",
+      password: "foobar",
+      residence_area: "Earth",
+      phone: "4598375"
+    }
+
+   {:ok, ford} = CRM.create_customer(customer)
+
+    order = %Order{
+      status: "Confirmed",
+      total: 25.00,
+      comments: "Stock up",
+      customer_id: ford.id,
+      customer_name: ford.name,
+      email: ford.email,
+      residence_area: ford.residence_area
+    }
+    |> Repo.insert!
+
+    retrieved_order = Sales.get_order(order.id)
+
+    assert order.id == retrieved_order.id
+  end
+
 end
