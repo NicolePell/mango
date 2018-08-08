@@ -11,9 +11,17 @@ defmodule MangoWeb.OrderController do
   end
 
   def show(conn, %{"id" => id}) do
+    customer = conn.assigns.current_customer
     order = Sales.get_order(id)
 
-    render conn, "show.html", order: order
+    if customer.id == order.customer_id  do
+      render conn, "show.html", order: order
+    else
+      conn
+      |> put_status(:not_found)
+      |> put_view(MangoWeb.ErrorView)
+      |> render("404.html")
+    end
   end
 
 end

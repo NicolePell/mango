@@ -2,14 +2,14 @@ defmodule MangoWeb.OrderHistoryTest do
   use Mango.DataCase
   use Hound.Helpers
 
+  alias Mango.Catalog.Product
+  alias Mango.CRM
+  alias Mango.Repo
+  alias Mango.Sales.Order
+
   hound_session()
 
   setup do
-    alias Mango.Catalog.Product
-    alias Mango.CRM
-    alias Mango.Repo
-    alias Mango.Sales.Order
-
     valid_attrs = %{
       "name" => "Ford",
       "email" => "fordp@betelgeuse.com",
@@ -116,6 +116,31 @@ defmodule MangoWeb.OrderHistoryTest do
   end
 
   test "user sees a 404 page when attempting to view an order that does not belong to the user" do
+    valid_attrs = %{
+      "name" => "Arthur",
+      "email" => "arthurd@milliways.com",
+      "password" => "theansweris42",
+      "residence_area" => "Earth",
+      "phone" => "424242"
+    }
+
+    {:ok, arthur} = CRM.create_customer(valid_attrs)
+
+    not_my_order = %Order{
+      status: "Confirmed",
+      total: 25.00,
+      comments: "Not my order",
+      customer_id: arthur.id,
+      customer_name: arthur.name,
+      email: arthur.email,
+      residence_area: arthur.residence_area,
+      line_items: []
+    }
+    |> Repo.insert!
+
+    navigate_to("/orders/#{not_my_order.id}")
+
+    assert page_source() =~ "Page not found"
   end
 
   defp login_as(email, password) do
