@@ -18,6 +18,17 @@
               to: cart_path(@conn, :show), 
               class: "cart nav-link" %>
         </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-globe"></i><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="<%= get_active_locale_class("en") %>"><a href="?locale=en">English</a></li>
+                <li class="<%= get_active_locale_class("fr") %>"><a href="?locale=fr">Français</a></li>
+                <li class="<%= get_active_locale_class("es") %>"><a href="?locale=es">Espanol</a></li>
+            </ul>
+        </li>
+
         <%= if @customer do %>    
         <li class="dropdown">
           <a href="#" id="user-menu" class="dropdown-toggle" data-toggle="dropdown">

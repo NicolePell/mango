@@ -1,4 +1,4 @@
-<h1 class="page-title">Seasonal products</h1>
+<h1 class="page-title"><%= dgettext("homepage", "Seasonal products") %></h1>
 
 <div class="row">
   <%= for product <- @seasonal_products do %>
