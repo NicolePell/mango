@@ -4,6 +4,7 @@ defmodule Mango.CRM.Customer do
   import Ecto.Changeset
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
+  alias Mango.CRM.Ticket
 
   schema "customers" do
     field :email, :string
@@ -12,6 +13,8 @@ defmodule Mango.CRM.Customer do
     field :password_hash, :string
     field :phone, :string
     field :residence_area, :string
+
+    has_many :tickets, Ticket
 
     timestamps()
   end

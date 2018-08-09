@@ -47,6 +47,9 @@ defmodule MangoWeb.Router do
     get "/orders/:id", OrderController, :show
 
     get "/logout", SessionController, :delete
+
+    resources "/tickets", TicketController,
+      except: [:edit, :update, :delete]
   end
 
 end
